@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ドーナツの穴 - 一条莉々華の哲学的思考</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&family=M+PLUS+1+Code:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+        
+        :root {
+            --color-1: #FF0086; /* ビビッドピンク - 主要色 */
+            --color-2: #FF69B4; /* ホットピンク - アクセント */
+            --color-3: #C71585; /* ミディアムバイオレットレッド - 暗めの色 */
+            --color-4: #FFB6C1; /* ライトピンク - 明るめの色 */
+            --color-5: #FFFFFF; /* 白 - 背景色 */
+            --shadow: 0 4px 6px rgba(255, 0, 134, 0.2);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #FFF0F5; /* ラベンダーブラッシュ - 薄いピンクの背景 */
+            color: #333333;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--color-5);
+            box-shadow: var(--shadow);
+            border-radius: 16px;
+            border: 2px solid var(--color-2);
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--color-1);
+            background: linear-gradient(to right, var(--color-1), var(--color-2));
+            border-radius: 8px;
+            padding: 1rem;
+            color: white;
+        }
+        
+        .title {
+            font-family: 'IBM Plex Sans JP', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-5);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .date {
+            font-family: 'M PLUS 1 Code', monospace;
+            font-size: 14px;
+            color: var(--color-5);
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .column {
+            width: 33%;
+            padding: 0 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .column {
+                width: 100%;
+                padding: 0;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        .section {
+            background-color: var(--color-5);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-top: 3px solid var(--color-2);
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-1);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px dotted var(--color-4);
+            padding-bottom: 8px;
+        }
+        
+        .section-title::before {
+            content: attr(data-icon);
+            margin-right: 0.5rem;
+            font-size: 22px;
+        }
+        
+        .highlight {
+            background-color: rgba(255, 105, 180, 0.2); /* ホットピンクの透過色 */
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            border-bottom: 2px dotted var(--color-2);
+        }
+        
+        .connector {
+            border-top: 2px dashed var(--color-2);
+            width: 100%;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .connector::after {
+            content: '💭';
+            position: absolute;
+            right: 0;
+            top: -10px;
+        }
+        
+        .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid var(--color-1);
+            margin: 0 auto;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+        
+        .thought-bubble {
+            background-color: var(--color-5);
+            border: 2px solid var(--color-1);
+            border-radius: 15px;
+            padding: 1rem;
+            margin: 1rem 0;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(255, 0, 134, 0.15);
+        }
+        
+        .thought-bubble::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-5);
+            border-top: 2px solid var(--color-1);
+            border-right: 2px solid var(--color-1);
+            transform: rotate(-45deg);
+        }
+        
+        .choice-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+        }
+        
+        .choice {
+            background-color: #f9e6f0; /* 薄いピンク */
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            width: 48%;
+            text-align: center;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(255, 0, 134, 0.15);
+            transition: all 0.2s ease;
+            border: 1px solid #FFB6C1;
+        }
+        
+        .choice:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 0, 134, 0.2);
+        }
+        
+        .choice.selected {
+            background-color: var(--color-1);
+            color: white;
+            transform: scale(1.05);
+            transition: all 0.2s ease;
+        }
+        
+        .icon-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--color-1);
+            color: var(--color-5);
+            font-size: 20px;
+            margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(255, 0, 134, 0.3);
+        }
+        
+        .number-label {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--color-1);
+            color: var(--color-5);
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            box-shadow: 0 2px 4px rgba(255, 0, 134, 0.3);
+            font-weight: bold;
+        }
+        
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-2);
+            font-size: 12px;
+            color: var(--color-3);
+            text-align: center;
+            background-color: rgba(255, 105, 180, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        /* 手書き風の線 */
+        .hand-drawn-border {
+            position: relative;
+        }
+        
+        .hand-drawn-border::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--color-1), var(--color-2), var(--color-1));
+            border-radius: 2px;
+            transform: rotate(-0.5deg);
+        }
+        
+        /* 手書き風アイコン */
+        .hand-drawn-icon {
+            display: inline-block;
+            margin: 0.5rem;
+        }
+
+        /* ドーナツ表現 */
+        .donut-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        .donut {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #FFB6C1; /* ピンク色のドーナツ */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(255, 0, 134, 0.2);
+            position: relative;
+            border: 3px solid #FF69B4;
+        }
+        
+        .donut::after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+        }
+        
+        .donut.bitten {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #FFB6C1; /* ピンク色のドーナツ */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(255, 0, 134, 0.2);
+            position: relative;
+            clip-path: polygon(0% 0%, 75% 0%, 100% 25%, 100% 100%, 0% 100%);
+            border: 3px solid #FF69B4;
+        }
+        
+        .donut.bitten::after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">💖 ドーナツの穴 ｜ 一条莉々華の哲学的思考 💖</h1>
+            <div class="date">2025年3月21日</div>
+        </header>
+        
+        <div class="main-content">
+            <!-- 左カラム -->
+            <div class="column">
+                <div class="section">
+                    <h2 class="section-title" data-icon="🍩">ドーナツの本質とは？</h2>
+                    <p>人類にとって永遠の課題：<span class="highlight">ドーナツの穴の正体</span>とは何か？</p>
+                    
+                    <div class="donut-container">
+                        <div class="donut"></div>
+                    </div>
+                    
+                    <div class="thought-bubble">
+                        「ドーナツの穴って、ドーナツがあって初めて存在するんですよ」<br>
+                        「銅と夏の部分が絶対に必要なんです。銅夏の部分があって初めて銅夏の穴が穴になる」
+                    </div>
+                    
+                    <div class="connector"></div>
+                    <div class="arrow-down"></div>
+                    
+                    <p>ドーナツを少し食べたら...穴はどうなる？</p>
+                    
+                    <div class="donut-container">
+                        <div class="donut bitten"></div>
+                    </div>
+                    
+                    <div class="choice-container">
+                        <div class="choice">まだ穴である</div>
+                        <div class="choice selected">もう穴ではない</div>
+                    </div>
+                    
+                    <p>穴の定義：<span class="highlight">「穴かどうかは指が通るかどうか」</span>「結局、穴と穴じゃないの違いって、棒が通るかどうかだと思うんです」</p>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title" data-icon="🍖">肉と魚、どちらかしか食べられないなら？</h2>
+                    
+                    <p>選択の条件：</p>
+                    <ul>
+                        <li>肉：鶏肉、牛肉、豚肉などすべての肉類</li>
+                        <li>魚：すべての魚介類</li>
+                    </ul>
+                    
+                    <div class="thought-bubble">
+                        「生の魚は好きだけど、焼き魚はうーん…」<br>
+                        「魚だと鯖とか鰯は好きだけど、なんか高級な煮魚とか苦手で…」<br>
+                        「肉と魚だと、どっちが種類多いのかな？」
+                    </div>
+                    
+                    <div class="choice-container">
+                        <div class="choice selected">肉を選ぶ</div>
+                        <div class="choice">魚を選ぶ</div>
+                    </div>
+                    
+                    <p>悩ましい問題：「馬刺しも肉ですよね？待って、鳥刺しもさしみ？でもさしみって魚じゃない？…あれ、どっちなんだろう？」</p>
+                </div>
+            </div>
+            
+            <!-- 中央カラム -->
+            <div class="column">
+                <div class="section">
+                    <h2 class="section-title" data-icon="🐙">たこ焼きの本質とは？</h2>
+                    
+                    <p>たこ焼きの定義について考える問い：</p>
+                    <p>たこ焼きを半分に割ったとき、どこまでが「たこ焼き」と呼べるか？</p>
+                    
+                    <div class="thought-bubble">
+                        「たこが入ってなくてもたこ焼きはたこ焼き」<br>
+                        「たこが入ってないたこ焼きは、たこが入ってないたこ焼きなだけ」<br>
+                        「ショートケーキで例えると、『ひと口ちょうだい』って言われてイチゴの部分がなくても、『あれ、ショートケーキじゃない』とは思わないでしょ？」
+                    </div>
+                    
+                    <div class="choice-container">
+                        <div class="choice">たこが入った部分だけ</div>
+                        <div class="choice selected">すべてたこ焼き</div>
+                    </div>
+                    
+                    <div class="connector"></div>
+                    <div class="arrow-down"></div>
+                    
+                    <p>結論：<span class="highlight">「結局たこ焼きはたこ焼きなんですよ。全部たこ焼き」</span>「気持ちがたこ焼きなら、絶対たこ焼き」</p>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title" data-icon="🎮">RPGの非協力的村人を許せるか？</h2>
+                    
+                    <p>ゲーム内で非協力的なNPCに遭遇したとき：</p>
+                    
+                    <div class="thought-bubble">
+                        「鍵アイテムをタダではくれなくて、あの山に住んでるゴブリンを倒してこいって言うんですよね」<br>
+                        「ゲームのキャラクター『まるまる』っていうのがいて、もう非協力的すぎて超イラッとするんですよね」<br>
+                        「でも返金求めるかって言われたら絶対しないです」
+                    </div>
+                    
+                    <p>ゲームの一部として受け入れるか、許せないと感じるか</p>
+                    
+                    <div class="choice-container">
+                        <div class="choice selected">許せる</div>
+                        <div class="choice">許せない</div>
+                    </div>
+                    
+                    <p>ゲームの感想：<span class="highlight">「イラっとするし、超ムカつくし、もう許せないし、もう嫌だって感じだけど…」</span>「ゲームだからしょうがないって受け入れちゃいますね」</p>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title" data-icon="🌱">植物に命はあるか？</h2>
+                    
+                    <div class="thought-bubble">
+                        「植物は命あるに決まってますよ。だって成長するじゃないですか」<br>
+                        「伸びたり縮んだり、太陽が与えられなかったら溺れちゃう」<br>
+                        「絶対に命あると思います」
+                    </div>
+                    
+                    <div class="choice-container">
+                        <div class="choice selected">命がある</div>
+                        <div class="choice">命はない</div>
+                    </div>
+                    
+                    <p><span class="highlight">「チューリップが咲いているのを見て可愛いと思うってことは、チューリップに命があるってことですよ」</span>「命がなくても心があるので、大切にしたい命があるんです」</p>
+                </div>
+            </div>
+            
+            <!-- 右カラム -->
+            <div class="column">
+                <div class="section">
+                    <h2 class="section-title" data-icon="🚪">ワープ装置と自己同一性</h2>
+                    
+                    <p>思考実験：ドアを開くと分子レベルで分解・再構成されるワープ装置</p>
+                    
+                    <div class="thought-bubble">
+                        「分解と再構成…でも莉々華は莉々華のままですよ」<br>
+                        「例えば、ミミズの尻尾が落ちても、ミミズはミミズのまま生きてる」<br>
+                        「莉々華の体が一瞬なくなっても、莉々華の心はそこにあって同じものが存在する」<br>
+                        「ただワープしてるだけじゃないですか」
+                    </div>
+                    
+                    <div class="choice-container">
+                        <div class="choice selected">連続している</div>
+                        <div class="choice">連続していない</div>
+                    </div>
+                    
+                    <p>例え：<span class="highlight">「パソパソ莉々華のパソコンが分解されて、またパソコンに組み立てなおされたら…同じパソコンなので、一回分解されただけ」</span>「dot dot dot が繋がってるから、それは莉々華莉々華です」</p>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title" data-icon="🧪">スワンプマンの問題</h2>
+                    
+                    <p>思考実験：化学反応で突然生まれた、あなたと同一の外見・思考を持つ存在</p>
+                    
+                    <div class="thought-bubble">
+                        「自分の記憶だって子供の頃のこと覚えてないし…」<br>
+                        「『子供の頃こうだったよ』って言われたら『あー私こうだったんだ』と思っちゃう」<br>
+                        「記憶が蓄積されたり、蓄積されなかったり、結局それって同じことじゃないですか」<br>
+                        「そもそも人間がそんないいもんだと思ってないので、スワンプマンを人間だと思う必要はないと思う」
+                    </div>
+                    
+                    <div class="choice-container">
+                        <div class="choice">人間である</div>
+                        <div class="choice selected">人間ではない</div>
+                    </div>
+                    
+                    <p>スワンプマンは<span class="highlight">「スワンプマンはスワンプマン、人間は人間」</span>「スワンプマンという存在としても愛されるべき」「人間じゃないけど、人間として扱ってあげたほうがいい」</p>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title" data-icon="🎭">「あなたは良い性格をしている」の意味</h2>
+                    
+                    <div class="thought-bubble">
+                        「『あなたは良い性格をしてる』って、ちょっと上から目線で嫌な感じがするじゃないですか」<br>
+                        「見知らぬ人による行動的発言で、『別に興味ないけど良い性格してますね』って使えるんですよ」<br>
+                        「『まるまるさん、あの人良い性格してるね』は興味ない時にも使えるけど、『まるまるさん、あなた良い性格してますね』はポジティブな気持ちの時には絶対使わないですよ」
+                    </div>
+                    
+                    <p>口調や文脈によって、<span class="highlight">「女の子から女の子に『あなた良い性格してるね』って言うと、友達になれるかもっていう意味合いが強いかも」</span>「それが分からない男子が多い」</p>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title" data-icon="🏥">臓器くじ制度について</h2>
+                    
+                    <p>架空の制度：健康な人をランダムに選び臓器提供を強制する制度</p>
+                    
+                    <div class="thought-bubble">
+                        「健康な人のもので、意思なく、ランダムで臓器を提供させるって…」<br>
+                        「誰かを犠牲にして誰かを守るのって問題の先送りにすぎないから、問題先送りしても状況は変わらない」<br>
+                        「でも自分がその立場になかったり…自分が大切にしてる人がその状況になったりして、誰も提供してくれる人がいないってなったら…」<br>
+                        「救われる可能性があるならって思っちゃうかも」
+                    </div>
+                    
+                    <p>難しい倫理的問題：<span class="highlight">「これって本当に難しいですよ」「でも自分から何かをあげたいって人が提供する制度のほうがいい」</span>「誰かが不幸せになっちゃうけど、でも自分たちの立場じゃない時は助けてほしいって思っちゃうんですよね」</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>出典：「ドーナツの穴」サイコパスかどうか、今日明らかにしましょう。【一条莉々華⧸hololive DEV_IS　ReGLOSS】YouTubeより（2025年3月21日参照）💖</p>
+        </div>
+    </div>
+</body>
+</html>
